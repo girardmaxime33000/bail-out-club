@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Crown, Database, Home, Lock, PlusCircle, Trophy } from "lucide-react";
+import { Database, Home, Lock, PlusCircle, Trophy } from "lucide-react";
 import { useStore } from "@/lib/store";
 import { supabaseConfigured } from "@/lib/supabase";
 import { levelProgress } from "@/lib/game";
@@ -26,9 +26,9 @@ export default function Nav() {
         <Ticker />
         <div className="border-b border-edge">
           <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-3">
-            <Link href="/" className="flex items-center gap-2 font-display text-lg font-black tracking-tight">
-              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-b from-gold-soft to-gold text-ink"><Crown size={16} /></span>
-              Bailout Club
+            <Link href="/" aria-label="Bailout Club" className="flex items-center text-[26px] font-black leading-none tracking-[-0.04em]">
+              <span className="text-white">Bailout</span>
+              <span className="ml-1 rounded-[6px] bg-gradient-to-b from-gold-soft to-gold px-1.5 pb-[3px] pt-[1px] text-ink">Club</span>
             </Link>
             <nav className="hidden items-center gap-1 text-sm font-semibold md:flex">
               {LINKS.slice(1).map((l) => (
