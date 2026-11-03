@@ -1,11 +1,14 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Inter } from "next/font/google";
+import { Cormorant_Garamond, Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { StoreProvider } from "@/lib/store";
 import Nav from "@/components/Nav";
+import Toaster from "@/components/Toaster";
+import LevelUp from "@/components/LevelUp";
 
-const serif = Cormorant_Garamond({ subsets: ["latin"], weight: ["400", "500", "600"], variable: "--font-serif" });
+const serif = Cormorant_Garamond({ subsets: ["latin"], weight: ["400", "500", "600"], style: ["normal", "italic"], variable: "--font-serif" });
 const sans = Inter({ subsets: ["latin"], variable: "--font-sans" });
+const display = Space_Grotesk({ subsets: ["latin"], weight: ["500", "700"], variable: "--font-display" });
 
 export const metadata: Metadata = {
   title: "Bailout Club",
@@ -14,11 +17,13 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${serif.variable} ${sans.variable}`}>
+    <html lang="en" className={`${serif.variable} ${sans.variable} ${display.variable}`}>
       <body className="antialiased">
         <StoreProvider>
           <Nav />
-          <main className="mx-auto max-w-5xl px-5 pb-24 pt-8">{children}</main>
+          <main className="mx-auto max-w-6xl px-5 pb-28 pt-8 md:pb-16">{children}</main>
+          <Toaster />
+          <LevelUp />
         </StoreProvider>
       </body>
     </html>

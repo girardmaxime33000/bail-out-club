@@ -3,23 +3,35 @@
 @tailwind utilities;
 
 :root { color-scheme: dark; }
-html, body { background: #0a0a0b; color: #f5f5f4; }
+html, body { background: #07070a; color: #f5f5f4; }
 body {
   font-family: var(--font-sans), system-ui, sans-serif;
-  background-image: radial-gradient(60% 40% at 50% -10%, rgba(212,166,74,0.08), transparent 70%);
+  background-image:
+    radial-gradient(60% 40% at 50% -10%, rgba(245,184,61,0.10), transparent 70%),
+    radial-gradient(40% 30% at 100% 20%, rgba(155,92,255,0.07), transparent 70%),
+    radial-gradient(40% 30% at 0% 60%, rgba(255,59,82,0.05), transparent 70%);
+  background-attachment: fixed;
   min-height: 100vh;
 }
-::selection { background: #d4a64a; color: #0a0a0b; }
+::selection { background: #f5b83d; color: #07070a; }
+.num { font-variant-numeric: tabular-nums; font-family: var(--font-display), var(--font-sans), sans-serif; }
 
 @layer components {
-  .eyebrow { @apply text-[11px] uppercase tracking-wider2 text-gold; }
+  .eyebrow { @apply text-[11px] font-semibold uppercase tracking-[0.2em] text-gold; }
+  .card { @apply rounded-2xl border border-edge bg-panel/80 backdrop-blur; }
   .btn-gold {
-    @apply inline-flex items-center justify-center gap-2 bg-gold px-6 py-3 text-sm font-semibold uppercase tracking-widest text-ink transition hover:bg-gold-soft disabled:cursor-not-allowed disabled:opacity-40;
+    @apply relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-xl bg-gradient-to-b from-gold-soft to-gold px-6 py-3.5 text-sm font-bold uppercase tracking-wider text-ink shadow-[0_8px_30px_-8px_rgba(245,184,61,0.6)] transition active:scale-[0.97] hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-40 disabled:shadow-none;
+  }
+  .btn-shine::after {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(110deg, transparent 35%, rgba(255,255,255,0.55) 50%, transparent 65%);
+    background-size: 200% 100%; animation: shine 3.5s linear infinite; pointer-events: none;
   }
   .btn-ghost {
-    @apply inline-flex items-center justify-center gap-2 border border-edge px-6 py-3 text-sm uppercase tracking-widest text-white/80 transition hover:border-gold hover:text-gold;
+    @apply inline-flex items-center justify-center gap-2 rounded-xl border border-edge bg-white/[0.03] px-6 py-3.5 text-sm font-semibold uppercase tracking-wider text-white/80 transition active:scale-[0.97] hover:border-gold/60 hover:text-gold disabled:opacity-40;
   }
   .field {
-    @apply w-full border border-edge bg-vault px-4 py-3 text-white outline-none transition placeholder:text-white/30 focus:border-gold;
+    @apply w-full rounded-xl border border-edge bg-vault px-4 py-3 text-white outline-none transition placeholder:text-white/30 focus:border-gold;
   }
+  .chip { @apply inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-[11px] font-semibold uppercase tracking-wider transition; }
 }
